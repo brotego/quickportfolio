@@ -177,6 +177,27 @@
     .projects-section {
         padding: 64px;
     }
+
+    /* Hide cursor on mobile */
+    #custom-cursor {
+        display: none;
+    }
+
+    /* Reset cursor styles for mobile */
+    body, a {
+        cursor: auto;
+    }
+
+    /* Fix SVG display on mobile */
+    .project-image img[src$=".svg"] {
+        margin-top: 0;
+        padding: 20px;
+        height: 100%;
+    }
+
+    .project-item:nth-last-child(2) img[src$=".svg"] {
+        margin-top: 0;
+    }
 }
     </style>
 </head>
