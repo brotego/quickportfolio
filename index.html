@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Stack Portfolio</title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/cursor.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: white;
+            font-family: abc;
+            display: block;
+            cursor: none;
+        }
+
+        a {
+            cursor: none;
+        }
+
+        #custom-cursor {
+            width: 8px;
+            height: 8px;
+            background-color: #666;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        /* Remove the old hover style and add JavaScript to handle it */
+        a:hover {
+            cursor: none;
+        }
+
+       /* Projects Section */
+.projects-section {
+    padding: 64px;
+    background: white;
+    font-family: abcmono;
+    
+}
+
+.project-item {
+    margin-bottom: 120px;
+    position: relative;
+    max-width: 500px;
+}
+
+.project-item.reverse {
+    margin-left: auto;
+}
+
+.project-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+/* Add specific styling for SVG containers */
+.project-item:nth-last-child(-n+2) .project-image {
+    aspect-ratio: 1/1; /* Make the last two containers square */
+}
+
+.project-item.visible .project-image {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add specific styling for SVG images */
+.project-image img[src$=".svg"] {
+    width: 100%;
+    height: 50%;
+    object-fit: contain;
+    background-color: white;
+    padding: 40px;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: -210px;
+}
+
+/* Make the second-to-last SVG bigger */
+.project-item:nth-last-child(2) img[src$=".svg"] {
+    max-width: 80%;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.project-text {
+    position: absolute;
+    top: 5px;
+    background: white;
+    font-family: abcmono;
+    font-size: 0.75rem;
+    padding: 8px;
+    
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Position text on the right for default items */
+.project-item .project-text {
+    left: calc(100% + 20px);
+}
+
+/* Position text on the left for reverse items */
+.project-item.reverse .project-text {
+    right: calc(100% + 20px);
+    left: auto;
+}
+
+.typing-text {
+    position: relative;
+    min-height: 1em;
+}
+
+.typing-text.name {
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.project-item.visible .typing-text.name.visible {
+    opacity: 1;
+}
+
+.details-container {
+    display: flex;
+    gap: 12px;
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.typing-text.category,
+.typing-text.number {
+    opacity: 0;
+}
+
+.typing-text.category.visible,
+.typing-text.number.visible {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+@media (max-width: 968px) {
+    .project-item .project-text,
+    .project-item.reverse .project-text {
+        left: auto;
+        right: 20px;
+    }
+    
+    .projects-section {
+        padding: 64px;
+    }
+}
+        @font-face {
+            font-family: abc;
+            src: url(public/ABCDiatypeVariable-Trial.ttf);
+        }
+        @font-face {
+            font-family: abcmono;
+            src: url(public/ABCDiatypeMonoVariable-Trial.ttf);
+        }
+    </style>
+</head>
+<body>
+    <div id="custom-cursor"></div>
+    <div id="nav-placeholder"></div>
+
+   <!-- Projects Section -->
+<section class="projects-section">
+    <div class="project-item">
+        <div class="project-image">
+            <a href="#">
+                <img src="/public/superba.png" alt="Project 1" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="Superba Projects"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="CLOSED DOWN"></div>
+                <div class="typing-text number" data-text="01"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item reverse">
+        <div class="project-image">
+            <a href="https://adolescentcontent.com/">
+                <img src="/public/ado.png" alt="Project 2" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="Adolescent Content"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="BUSINESS"></div>
+                <div class="typing-text number" data-text="02"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item reverse">
+        <div class="project-image">
+            <a href="https://www.aparty.nyc/">
+                <img src="/public/apaimg.png" alt="Project 2" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="A Party"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="BUSINESS"></div>
+                <div class="typing-text number" data-text="03"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-image">
+            <a href="https://www.isobellola.com/">
+                <img src="/public/isoimg.png" alt="Project 3" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="Isobel Lola"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="PORTFOLIO"></div>
+                <div class="typing-text number" data-text="04"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="project-item">
+        <div class="project-image">
+            <a href="http://brodygray.com/">
+                <img src="/public/brodyimg.png" alt="Project 3" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="Brody Gray"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="PORTFOLIO"></div>
+                <div class="typing-text number" data-text="05"></div>
+            </div>
+        </div>
+    </div> -->
+    <div class="project-item reverse">
+        <div class="project-image">
+            <a href="https://www.rileygordonschmedeman.com/">
+                <img src="/public/rilimg.png" alt="Project 2" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="Riley Schmedeman"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="PORTFOLIO"></div>
+                <div class="typing-text number" data-text="06"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-image">
+            <a href="#">
+                <img src="/public/siderainbow.svg" alt="Project 7" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="CameraRoll"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="IN PROGRESS"></div>
+                <div class="typing-text number" data-text="07"></div>
+            </div>
+        </div>
+    </div>
+    <div class="project-item reverse">
+        <div class="project-image">
+            <a href="#">
+                <img src="/public/clipforlogo.svg" alt="Project 8" />
+            </a>
+        </div>
+        <div class="project-text">
+            <div class="typing-text name" data-text="AttatchedMag"></div>
+            <div class="details-container">
+                <div class="typing-text category" data-text="IN PROGRESS"></div>
+                <div class="typing-text number" data-text="08"></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/js/cursor.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/footer.js"></script>
+    <script>
+       function typeText(element, text, callback) {
+    let index = 0;
+    element.textContent = '';
+    element.style.opacity = '1';
+    
+    function typeChar() {
+        if (index < text.length) {
+            element.textContent = text.slice(0, index + 1);
+            index++;
+            setTimeout(typeChar, 50);
+        } else {
+            if (callback) callback();
+        }
+    }
+    
+    typeChar();
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const projectItem = entry.target;
+            const name = projectItem.querySelector('.typing-text.name');
+            const category = projectItem.querySelector('.typing-text.category');
+            const number = projectItem.querySelector('.typing-text.number');
+            
+            projectItem.classList.add('visible');
+            
+            typeText(name, name.dataset.text, () => {
+                name.classList.add('visible');
+                typeText(category, category.dataset.text, () => {
+                    category.classList.add('visible');
+                    typeText(number, number.dataset.text, () => {
+                        number.classList.add('visible');
+                    });
+                });
+            });
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+document.querySelectorAll('.project-item').forEach(item => {
+    observer.observe(item);
+});
+
+        const cursor = document.getElementById('custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = 1;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = 0;
+        });
+
+        // Add hover detection for links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.backgroundColor = 'black';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = '#666';
+            });
+        });
+    </script>
+</body>
+</html> 
